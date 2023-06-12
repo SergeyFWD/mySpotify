@@ -6,7 +6,7 @@ import shuffle from '../img/icon/shuffle.svg'
 import like from '../img/icon/like.svg'
 import dislike from '../img/icon/dislike.svg'
 import note from '../img/icon/note.svg'
-import sprite from '../img/icon/sprite.svg'
+import volume from '../img/icon/volume.svg'
 
 function Bar() {
   return (
@@ -17,37 +17,33 @@ function Bar() {
           <div className="bar__player player">
             <div className="player__controls">
               <div className="player__btn-prev">
-                <svg className="player__btn-prev-svg" alt="prev">
-                  <use href={prev}></use>
-                </svg>
+                <img className="player__btn-prev-svg" src={prev} alt="prev" />
               </div>
               <div className="player__btn-play _btn">
-                <svg className="player__btn-play-svg" alt="play">
-                  <use href={play}></use>
-                </svg>
+                <img className="player__btn-play-svg" src={play} alt="play" />
               </div>
               <div className="player__btn-next">
-                <svg className="player__btn-next-svg" alt="next">
-                  <use href={next}></use>
-                </svg>
+                <img className="player__btn-next-svg" src={next} alt="next" />
               </div>
               <div className="player__btn-repeat _btn-icon">
-                <svg className="player__btn-repeat-svg" alt="repeat">
-                  <use href={repeat}></use>
-                </svg>
+                <img
+                  className="player__btn-repeat-svg"
+                  src={repeat}
+                  alt="repeat"
+                />
               </div>
               <div className="player__btn-shuffle _btn-icon">
-                <svg className="player__btn-shuffle-svg" alt="shuffle">
-                  <use href={shuffle}></use>
-                </svg>
+                <img
+                  className="player__btn-shuffle-svg"
+                  src={shuffle}
+                  alt="shuffle"
+                />
               </div>
             </div>
             <div className="player__track-play track-play">
               <div className="track-play__contain">
                 <div className="track-play__image">
-                  <svg className="track-play__svg" alt="music">
-                    <use href={note}></use>
-                  </svg>
+                  <img className="track-play__svg" src={note} alt="music" />
                 </div>
                 <div className="track-play__author">
                   <a className="track-play__author-link" href="#">
@@ -62,14 +58,14 @@ function Bar() {
               </div>
               <div className="track-play__like-dis">
                 <div className="track-play__like _btn-icon">
-                  <svg className="track-play__like-svg" alt="like">
-                    <use href={like}></use>
-                  </svg>
+                  <img className="track-play__like-svg" src={like} alt="like" />
                 </div>
                 <div className="track-play__dislike _btn-icon">
-                  <svg className="track-play__dislike-svg" alt="dislike">
-                    <use href={dislike}></use>
-                  </svg>
+                  <img
+                    className="track-play__dislike-svg"
+                    src={dislike}
+                    alt="dislike"
+                  />
                 </div>
               </div>
             </div>
@@ -77,9 +73,10 @@ function Bar() {
           <div className="bar__volume-block volume">
             <div className="volume__content">
               <div className="volume__image">
-                <svg className="volume__svg" alt="volume">
+                <img className="volume__svg" src={volume} alt="volume" />
+                {/* <svg className="volume__svg" alt="volume">
                   <use href={sprite}></use>
-                </svg>
+                </svg> */}
               </div>
               <div className="volume__progress _btn">
                 <input
