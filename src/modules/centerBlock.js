@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import search from '../img/icon/search.svg'
 import watch from '../img/icon/watch.svg'
 import note from '../img/icon/note.svg'
 import like from '../img/icon/like.svg'
+import quadro from '../img/isLoading/quadro.png'
 
 function Centerblock() {
+  const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(null)
+
+  useEffect(() => {
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+  }, [])
+
   const toggleVisibility = (filter) =>
     setVisible(visible === filter ? null : filter)
   return (
@@ -144,7 +155,11 @@ function Centerblock() {
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
-                  <img className="track__title-svg" src={note} alt="music" />
+                  {loading ? (
+                    <img className="search__svg" src={quadro} />
+                  ) : (
+                    <img className="track__title-svg" src={note} alt="music" />
+                  )}
                 </div>
                 <div className="track__title-text">
                   <a className="track__title-link" href="#">

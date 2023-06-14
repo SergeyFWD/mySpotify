@@ -3,13 +3,13 @@ import logo from '../img/logo.png'
 
 function Nav() {
   const [visible, setVisible] = useState(false)
-  const toggleVisibility = () => setVisible(!visible)
+
   return (
     <nav className="main__nav nav">
       <div className="nav__logo logo">
         <img className="logo__image" src={logo} alt="logo" />
       </div>
-      <div className="nav__burger burger" onClick={toggleVisibility}>
+      <div className="nav__burger burger" onClick={() =>setVisible (prev => !prev)}>
         <span className="burger__line"></span>
         <span className="burger__line"></span>
         <span className="burger__line"></span>

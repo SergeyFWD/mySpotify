@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import prev from '../img/icon/prev.svg'
 import play from '../img/icon/play.svg'
 import next from '../img/icon/next.svg'
@@ -7,8 +8,20 @@ import like from '../img/icon/like.svg'
 import dislike from '../img/icon/dislike.svg'
 import note from '../img/icon/note.svg'
 import volume from '../img/icon/volume.svg'
+import quadro from '../img/isLoading/quadro.png'
+import rectangle from '../img/isLoading/rectangle.png'
 
 function Bar() {
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+  }, [])
+
   return (
     <div className="bar">
       <div className="bar__content">
@@ -43,17 +56,29 @@ function Bar() {
             <div className="player__track-play track-play">
               <div className="track-play__contain">
                 <div className="track-play__image">
-                  <img className="track-play__svg" src={note} alt="music" />
+                  {loading ? (
+                    <img src={quadro} />
+                  ) : (
+                    <img className="track-play__svg" src={note} alt="music" />
+                  )}
                 </div>
                 <div className="track-play__author">
-                  <a className="track-play__author-link" href="#">
-                    Ты та...
-                  </a>
+                  {loading ? (
+                    <img src={rectangle} />
+                  ) : (
+                    <a className="track-play__author-link" href="#">
+                      Ты та...
+                    </a>
+                  )}
                 </div>
                 <div className="track-play__album">
-                  <a className="track-play__album-link" href="#">
-                    Баста
-                  </a>
+                  {loading ? (
+                    <img src={rectangle} />
+                  ) : (
+                    <a className="track-play__album-link" href="#">
+                      Баста
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="track-play__like-dis">
@@ -74,9 +99,6 @@ function Bar() {
             <div className="volume__content">
               <div className="volume__image">
                 <img className="volume__svg" src={volume} alt="volume" />
-                {/* <svg className="volume__svg" alt="volume">
-                  <use href={sprite}></use>
-                </svg> */}
               </div>
               <div className="volume__progress _btn">
                 <input
