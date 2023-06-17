@@ -77,6 +77,11 @@ body {
 
 // ========== activ ========
 
+.active {
+  color: #ad61ff !important;
+  text-decoration: underline;
+}
+
 ._btn-text:active {
   border-color: #ad61ff;
   color: #ad61ff;
@@ -96,11 +101,25 @@ body {
   cursor: pointer;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 237px;
+  background-color: #4b4949;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  height: 65px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
 // =================== main ====================//
 .main {
   flex: 1 1 auto;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: space-between;
 
   &__nav {
@@ -137,6 +156,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  :hover {
+    cursor: pointer;
   }
 
   &__menu {
@@ -261,10 +283,79 @@ body {
     border-radius: 60px;
     padding: 6px 20px;
 
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
+    // &:not(:last-child) {
+    //   margin-right: 10px;
+    // }
   }
+
+  &__link-author {
+    color: #ffffff;
+    padding-top: 24px;
+    font-size: 20px;
+  }
+
+  &-year {
+    position: absolute;
+    width: 403px;
+    height: 92px;
+    background: #313131;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  &-author {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+  &__wrap {
+    margin-right: 10px;
+  }
+}
+
+.box {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 34px;
+  width: 248px;
+  height: 305px;
+  background: #313131;
+  border-radius: 12px;
+}
+
+.radio {
+  display: none;
+}
+
+.fake {
+  width: 18px;
+  height: 18px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.fake::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.radio:checked + .fake::before {
+  opacity: 1;
 }
 
 .content {

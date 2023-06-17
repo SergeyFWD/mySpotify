@@ -12,7 +12,7 @@
 a,
 a:visited {
   text-decoration: none;
-  font-family: 'StratosSkyeng', sans-serif;
+  font-family: "StratosSkyeng", sans-serif;
   cursor: pointer;
 }
 
@@ -26,10 +26,8 @@ ul li {
 }
 
 @font-face {
-  font-family: 'StratosSkyeng';
-  src: local('StratosSkyeng'), local('StratosSkyeng'),
-    url('./fonts/Stratos-Black.woff2') format('woff2'),
-    url('./fonts/Stratos-Black.woff') format('woff');
+  font-family: "StratosSkyeng";
+  src: local("StratosSkyeng"), local("StratosSkyeng"), url("./fonts/Stratos-Black.woff2") format("woff2"), url("./fonts/Stratos-Black.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -37,7 +35,7 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: 'StratosSkyeng', sans-serif;
+  font-family: "StratosSkyeng", sans-serif;
   color: #ffffff;
 }
 
@@ -68,6 +66,11 @@ body {
   cursor: pointer;
 }
 
+.active {
+  color: #ad61ff !important;
+  text-decoration: underline;
+}
+
 ._btn-text:active {
   border-color: #ad61ff;
   color: #ad61ff;
@@ -87,10 +90,23 @@ body {
   cursor: pointer;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 237px;
+  background-color: #4b4949;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  height: 65px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
 .main {
   flex: 1 1 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 .main__nav {
@@ -122,6 +138,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.nav :hover {
+  cursor: pointer;
 }
 .nav__menu {
   display: block;
@@ -233,8 +252,72 @@ body {
   border-radius: 60px;
   padding: 6px 20px;
 }
-.filter__button:not(:last-child) {
+.filter__link-author {
+  color: #ffffff;
+  padding-top: 24px;
+  font-size: 20px;
+}
+.filter-year {
+  position: absolute;
+  width: 403px;
+  height: 92px;
+  background: #313131;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.filter-author {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+.filter__wrap {
   margin-right: 10px;
+}
+
+.box {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 34px;
+  width: 248px;
+  height: 305px;
+  background: #313131;
+  border-radius: 12px;
+}
+
+.radio {
+  display: none;
+}
+
+.fake {
+  width: 18px;
+  height: 18px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.fake::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.radio:checked + .fake::before {
+  opacity: 1;
 }
 
 .content__title {
@@ -460,11 +543,7 @@ body {
   flex-direction: row;
   padding: 0 27px 0 31px;
 }
-.player__btn-prev,
-.player__btn-play,
-.player__btn-next,
-.player__btn-repeat,
-.player__btn-shuffle {
+.player__btn-prev, .player__btn-play, .player__btn-next, .player__btn-repeat, .player__btn-shuffle {
   padding: 5px;
   display: flex;
   align-items: center;
@@ -522,7 +601,7 @@ body {
   width: auto;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-areas: 'image author' 'image album';
+  grid-template-areas: "image author" "image album";
   align-items: center;
 }
 .track-play__image {
@@ -570,8 +649,7 @@ body {
   align-items: center;
   margin-left: 26%;
 }
-.track-play__like,
-.track-play__dislike {
+.track-play__like, .track-play__dislike {
   padding: 5px;
 }
 .track-play__like-svg {
@@ -611,4 +689,4 @@ body {
 }
 .volume__progress-line {
   width: 109px;
-} /*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
