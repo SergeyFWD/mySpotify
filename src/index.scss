@@ -282,10 +282,6 @@ body {
     border: 1px solid #ffffff;
     border-radius: 60px;
     padding: 6px 20px;
-
-    // &:not(:last-child) {
-    //   margin-right: 10px;
-    // }
   }
 
   &__link-author {
@@ -806,5 +802,69 @@ body {
 
   &__progress-line {
     width: 109px;
+  }
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+
+  &__auth {
+    width: 366px;
+    height: 439px;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 43px;
+    gap: 30px;
+  }
+
+  &__input {
+    border: none;
+    border-bottom: 1px solid #d0cece;
+    padding: 8px;
+    padding-left: 0;
+    width: 278px;
+    outline: none;
+    font-size: 18px;
+    &::placeholder {
+      font-size: 18px;
+      color: #e1e1e1;
+    }
+  }
+
+  &__login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 278px;
+    height: 52px;
+    color: #fff;
+    border-radius: 6px;
+    background: #580ea2;
+    margin-top: 30px;
+    &:hover {
+      background: #3f007d;
+    }
+  }
+  &__register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 278px;
+    height: 52px;
+    color: #000;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
+    &:hover {
+      background: #d0cece;
+    }
   }
 }

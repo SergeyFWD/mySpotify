@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import logo from '../img/logo.png'
 
+import { Link } from 'react-router-dom'
+
 function Nav() {
   const [visible, setVisible] = useState(false)
 
@@ -9,7 +11,10 @@ function Nav() {
       <div className="nav__logo logo">
         <img className="logo__image" src={logo} alt="logo" />
       </div>
-      <div className="nav__burger burger" onClick={() =>setVisible (prev => !prev)}>
+      <div
+        className="nav__burger burger"
+        onClick={() => setVisible((prev) => !prev)}
+      >
         <span className="burger__line"></span>
         <span className="burger__line"></span>
         <span className="burger__line"></span>
@@ -24,9 +29,9 @@ function Nav() {
               </a>
             </li>
             <li className="menu__item">
-              <a href="#" className="menu__link">
+              <Link to="/play-list" className="menu__link">
                 Мой плейлист
-              </a>
+              </Link>
             </li>
             <li className="menu__item">
               <a href="#" className="menu__link">
