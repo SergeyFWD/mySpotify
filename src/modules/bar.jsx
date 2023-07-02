@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import prev from '../img/icon/prev.svg'
 import play from '../img/icon/play.svg'
+// import stop from '../img/icon/stop.svg'
 import next from '../img/icon/next.svg'
 import repeat from '../img/icon/repeat.svg'
 import shuffle from '../img/icon/shuffle.svg'
@@ -10,9 +11,13 @@ import note from '../img/icon/note.svg'
 import volume from '../img/icon/volume.svg'
 import quadro from '../img/isLoading/quadro.png'
 import rectangle from '../img/isLoading/rectangle.png'
+import basta from '../../src/audio/1.mp3'
 
 function Bar() {
   const [loading, setLoading] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const ref = useRef(null)
+  // const [setPercentage] = useState(0)
 
   useEffect(() => {
     setLoading(true)
@@ -21,6 +26,22 @@ function Bar() {
       setLoading(false)
     }, 5000)
   }, [])
+
+  // const onChange = (e) => {
+  //   setPercentage(e.target.value)
+  // }
+
+  const playing = () => {
+    if (!isPlaying) {
+      setIsPlaying(true)
+      ref.current.play()
+    }
+
+    if (isPlaying) {
+      setIsPlaying(false)
+      ref.current.pause()
+    }
+  }
 
   return (
     <div className="bar">
@@ -33,7 +54,13 @@ function Bar() {
                 <img className="player__btn-prev-svg" src={prev} alt="prev" />
               </div>
               <div className="player__btn-play _btn">
-                <img className="player__btn-play-svg" src={play} alt="play" />
+                <img
+                  className="player__btn-play-svg"
+                  src={play}
+                  alt="play"
+                  onClick={playing}
+                />
+                <audio ref={ref} src={basta} />
               </div>
               <div className="player__btn-next">
                 <img className="player__btn-next-svg" src={next} alt="next" />
@@ -81,6 +108,7 @@ function Bar() {
                   )}
                 </div>
               </div>
+
               <div className="track-play__like-dis">
                 <div className="track-play__like _btn-icon">
                   <img className="track-play__like-svg" src={like} alt="like" />
