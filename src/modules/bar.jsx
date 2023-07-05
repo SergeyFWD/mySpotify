@@ -16,8 +16,11 @@ import basta from '../../src/audio/1.mp3'
 function Bar() {
   const [loading, setLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [percentage, setPercentage] = useState(0)
+  // const [duration, setDuration] = useState(0)
+  // const [currentTime, setCurrentTime] = useState(0)
+
   const ref = useRef(null)
-  // const [setPercentage] = useState(0)
 
   useEffect(() => {
     setLoading(true)
@@ -26,10 +29,6 @@ function Bar() {
       setLoading(false)
     }, 5000)
   }, [])
-
-  // const onChange = (e) => {
-  //   setPercentage(e.target.value)
-  // }
 
   const playing = () => {
     if (!isPlaying) {
@@ -43,10 +42,27 @@ function Bar() {
     }
   }
 
+  const onChange = (e) => {
+    setPercentage(e.target.value)
+    console.log(percentage)
+  }
+
+  const timeUpdate = (e) => {
+    const time = e.currentTarget.currentTime
+    console.log(time.toFixed(2))
+  }
+
   return (
     <div className="bar">
       <div className="bar__content">
-        <div className="bar__player-progress"></div>
+        <div className="">
+          <input
+            type="range"
+            className="bar__player-progress"
+            onChange={onChange}
+            step="0.01"
+          />
+        </div>
         <div className="bar__player-block">
           <div className="bar__player player">
             <div className="player__controls">
@@ -60,8 +76,8 @@ function Bar() {
                   alt="play"
                   onClick={playing}
                 />
-                <audio ref={ref} src={basta} />
               </div>
+              <audio ref={ref} src={basta} onTimeUpdate={timeUpdate} />
               <div className="player__btn-next">
                 <img className="player__btn-next-svg" src={next} alt="next" />
               </div>
