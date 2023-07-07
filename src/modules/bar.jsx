@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import prev from '../img/icon/prev.svg'
 import play from '../img/icon/play.svg'
-// import stop from '../img/icon/stop.svg'
+import stop from '../img/icon/stop.svg'
 import next from '../img/icon/next.svg'
 import repeat from '../img/icon/repeat.svg'
 import shuffle from '../img/icon/shuffle.svg'
@@ -18,7 +18,6 @@ function Bar() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [percentage, setPercentage] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
-  // const [image, setImage] = useState(false)
 
   const ref = useRef(null)
 
@@ -37,13 +36,6 @@ function Bar() {
     audio.currentTime = (audio.duration / 100) * e.target.value
     setPercentage(e.target.value)
   }
-
-  // const onChangeImage = () => {
-  //   const imagesPath = {
-  //     play: `${play}`,
-  //     stop: `${stop}`,
-  //   }
-  // }
 
   const playing = () => {
     const audio = ref.current
@@ -90,12 +82,21 @@ function Bar() {
                 <img className="player__btn-prev-svg" src={prev} alt="prev" />
               </div>
               <div className="player__btn-play _btn">
-                <img
-                  className="player__btn-play-svg"
-                  src={play}
-                  alt="play"
-                  onClick={playing}
-                />
+                {!isPlaying ? (
+                  <img
+                    className="player__btn-play-svg"
+                    src={play}
+                    alt="play"
+                    onClick={playing}
+                  />
+                ) : (
+                  <img
+                    className="player__btn-play-svg"
+                    src={stop}
+                    alt="play"
+                    onClick={playing}
+                  />
+                )}
               </div>
 
               <div className="player__btn-next">
