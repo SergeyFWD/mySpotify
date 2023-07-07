@@ -17,10 +17,12 @@ function Bar() {
   const [loading, setLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [percentage, setPercentage] = useState(0)
-  // const [duration, setDuration] = useState(0)
-  // const [currentTime, setCurrentTime] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  // const [image, setImage] = useState(false)
 
   const ref = useRef(null)
+
+  useEffect(() => {}, [percentage])
 
   useEffect(() => {
     setLoading(true)
@@ -30,7 +32,23 @@ function Bar() {
     }, 5000)
   }, [])
 
+  const onChange = (e) => {
+    const audio = ref.current
+    audio.currentTime = (audio.duration / 100) * e.target.value
+    setPercentage(e.target.value)
+  }
+
+  // const onChangeImage = () => {
+  //   const imagesPath = {
+  //     play: `${play}`,
+  //     stop: `${stop}`,
+  //   }
+  // }
+
   const playing = () => {
+    const audio = ref.current
+    audio.volume = 0.1
+
     if (!isPlaying) {
       setIsPlaying(true)
       ref.current.play()
@@ -42,14 +60,15 @@ function Bar() {
     }
   }
 
-  const onChange = (e) => {
-    setPercentage(e.target.value)
-    console.log(percentage)
-  }
-
   const timeUpdate = (e) => {
+    const percent = (
+      (e.currentTarget.currentTime / e.currentTarget.duration) *
+      100
+    ).toFixed(2)
     const time = e.currentTarget.currentTime
-    console.log(time.toFixed(2))
+
+    setPercentage(+percent)
+    setCurrentTime(time.toFixed(2))
   }
 
   return (
@@ -60,8 +79,9 @@ function Bar() {
             type="range"
             className="bar__player-progress"
             onChange={onChange}
-            step="0.01"
+            value={currentTime}
           />
+          <audio ref={ref} src={basta} onTimeUpdate={timeUpdate} />
         </div>
         <div className="bar__player-block">
           <div className="bar__player player">
@@ -77,7 +97,7 @@ function Bar() {
                   onClick={playing}
                 />
               </div>
-              <audio ref={ref} src={basta} onTimeUpdate={timeUpdate} />
+
               <div className="player__btn-next">
                 <img className="player__btn-next-svg" src={next} alt="next" />
               </div>
