@@ -1,13 +1,30 @@
 import { useState } from 'react'
 import logo from '../img/logo.png'
+import moon from '../img/icon/moon.svg'
+import sun from '../img/icon/sun.svg'
 
 import { Link } from 'react-router-dom'
 
+import { useThemeContext } from '../modules/theme'
+
+const { theme } = useThemeContext()
+
 function Nav() {
   const [visible, setVisible] = useState(false)
+  const [isTheme, setIsTheme] = useState(false)
+
+  const onChangeTheme = () => {
+    setIsTheme(!isTheme === true ? !isTheme : false)
+  }
 
   return (
-    <nav className="main__nav nav">
+    <nav
+      className="main__nav nav"
+      style={{
+        backgroundColor: theme.background,
+        color: theme.color,
+      }}
+    >
       <div className="nav__logo logo">
         <img className="logo__image" src={logo} alt="logo" />
       </div>
@@ -36,6 +53,15 @@ function Nav() {
             <li className="menu__item">
               <a href="#" className="menu__link">
                 Войти
+              </a>
+            </li>
+            <li className="menu__item">
+              <a href="#" className="menu__link" onClick={onChangeTheme}>
+                {!isTheme ? (
+                  <img className="moon" src={moon} alt="moon" />
+                ) : (
+                  <img className="moon" src={sun} alt="moon" />
+                )}
               </a>
             </li>
           </ul>
