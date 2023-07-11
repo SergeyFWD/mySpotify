@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import prev from '../img/icon/prev.svg'
 import play from '../img/icon/play.svg'
-// import stop from '../img/icon/stop.svg'
+import stop from '../img/icon/stop.svg'
 import next from '../img/icon/next.svg'
 import repeat from '../img/icon/repeat.svg'
 import shuffle from '../img/icon/shuffle.svg'
@@ -16,8 +16,12 @@ import basta from '../../src/audio/1.mp3'
 function Bar() {
   const [loading, setLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [percentage, setPercentage] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+
   const ref = useRef(null)
-  // const [setPercentage] = useState(0)
+
+  useEffect(() => {}, [percentage])
 
   useEffect(() => {
     setLoading(true)
@@ -27,11 +31,16 @@ function Bar() {
     }, 5000)
   }, [])
 
-  // const onChange = (e) => {
-  //   setPercentage(e.target.value)
-  // }
+  const onChange = (e) => {
+    const audio = ref.current
+    audio.currentTime = (audio.duration / 100) * e.target.value
+    setPercentage(e.target.value)
+  }
 
   const playing = () => {
+    const audio = ref.current
+    audio.volume = 0.1
+
     if (!isPlaying) {
       setIsPlaying(true)
       ref.current.play()
@@ -43,10 +52,29 @@ function Bar() {
     }
   }
 
+  const timeUpdate = (e) => {
+    const percent = (
+      (e.currentTarget.currentTime / e.currentTarget.duration) *
+      100
+    ).toFixed(2)
+    const time = e.currentTarget.currentTime
+
+    setPercentage(+percent)
+    setCurrentTime(time.toFixed(2))
+  }
+
   return (
     <div className="bar">
       <div className="bar__content">
-        <div className="bar__player-progress"></div>
+        <div className="">
+          <input
+            type="range"
+            className="bar__player-progress"
+            onChange={onChange}
+            value={currentTime}
+          />
+          <audio ref={ref} src={basta} onTimeUpdate={timeUpdate} />
+        </div>
         <div className="bar__player-block">
           <div className="bar__player player">
             <div className="player__controls">
@@ -54,14 +82,23 @@ function Bar() {
                 <img className="player__btn-prev-svg" src={prev} alt="prev" />
               </div>
               <div className="player__btn-play _btn">
-                <img
-                  className="player__btn-play-svg"
-                  src={play}
-                  alt="play"
-                  onClick={playing}
-                />
-                <audio ref={ref} src={basta} />
+                {!isPlaying ? (
+                  <img
+                    className="player__btn-play-svg"
+                    src={play}
+                    alt="play"
+                    onClick={playing}
+                  />
+                ) : (
+                  <img
+                    className="player__btn-play-svg"
+                    src={stop}
+                    alt="play"
+                    onClick={playing}
+                  />
+                )}
               </div>
+
               <div className="player__btn-next">
                 <img className="player__btn-next-svg" src={next} alt="next" />
               </div>
