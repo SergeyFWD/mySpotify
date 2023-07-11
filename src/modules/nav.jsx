@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom'
 
 import { useThemeContext } from '../modules/theme'
 
-const { theme } = useThemeContext()
-
 function Nav() {
+  const { theme } = useThemeContext()
   const [visible, setVisible] = useState(false)
   const [isTheme, setIsTheme] = useState(false)
 
@@ -41,17 +40,35 @@ function Nav() {
         <div className="nav__menu menu ">
           <ul className="menu__list">
             <li className="menu__item">
-              <a href="#" className="menu__link">
+              <a
+                href="#"
+                className="menu__link"
+                style={{
+                  color: theme.color,
+                }}
+              >
                 Главное
               </a>
             </li>
             <li className="menu__item">
-              <Link to="/play-list" className="menu__link">
+              <Link
+                to="/play-list"
+                className="menu__link"
+                style={{
+                  color: theme.color,
+                }}
+              >
                 Мой плейлист
               </Link>
             </li>
             <li className="menu__item">
-              <a href="#" className="menu__link">
+              <a
+                href="#"
+                className="menu__link"
+                style={{
+                  color: theme.color,
+                }}
+              >
                 Войти
               </a>
             </li>

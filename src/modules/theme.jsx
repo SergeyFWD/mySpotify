@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 
 export const themes = {
   light: {
-    color: '#282c34',
-    background: '#fff',
+    color: 'white',
+    background: 'black',
   },
   dark: {
-    color: '#fff',
-    background: '#282c34',
+    color: 'black',
+    background: '#F6F5F3',
   },
 }
 

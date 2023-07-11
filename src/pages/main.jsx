@@ -16,12 +16,13 @@ export function Main() {
 
     setCurrentTheme(themes.dark)
   }
+
   return (
     <div className="wrapper">
       <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
         <div className="container">
           <main className="main">
-            <button onClick={toggleTheme}>fsdfsd</button>
+            <button onClick={toggleTheme}>Переключи</button>
             <Nav />
             <Centerblock />
             <Sidebar />
