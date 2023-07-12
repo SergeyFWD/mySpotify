@@ -1,25 +1,5 @@
-import React, { useContext } from 'react'
+import { createContext } from 'react'
 
-export const themes = {
-  light: {
-    color: 'white',
-    background: 'black',
-  },
-  dark: {
-    color: 'black',
-    background: '#F6F5F3',
-  },
-}
+const ThemeContext = createContext('light')
 
-export const ThemeContext = React.createContext({
-  theme: themes.dark,
-  toggleTheme: () => {},
-})
-
-export const useThemeContext = () => {
-  const theme = useContext(ThemeContext)
-
-  if (!theme) return theme.dark
-
-  return theme
-}
+export default ThemeContext

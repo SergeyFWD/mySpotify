@@ -3,26 +3,20 @@ import Centerblock from '../../src/modules/centerBlock'
 import Sidebar from '../../src/modules/sideBar'
 import Bar from '../../src/modules/bar'
 import { useState } from 'react'
-import { ThemeContext, themes } from '../../src/modules/theme'
+import ThemeContext from '../../src/modules/theme'
 
 export function Main() {
-  const [currentTheme, setCurrentTheme] = useState(themes.light)
+  const [theme, setTheme] = useState('dark')
 
-  const toggleTheme = () => {
-    if (currentTheme === themes.dark) {
-      setCurrentTheme(themes.light)
-      return
-    }
-
-    setCurrentTheme(themes.dark)
-  }
+  const toggleTheme = () =>
+    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))
+  document.documentElement.setAttribute('data-theme', theme)
 
   return (
     <div className="wrapper">
-      <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <div className="container">
           <main className="main">
-            <button onClick={toggleTheme}>Переключи</button>
             <Nav />
             <Centerblock />
             <Sidebar />
