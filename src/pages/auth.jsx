@@ -5,7 +5,7 @@ export const Auth = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="container">
+        <div className="container__auth">
           <div className="form">
             <div className="form__auth">
               <img className="form__logo" src={logo} alt="logo" />
